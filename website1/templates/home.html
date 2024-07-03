@@ -24,7 +24,7 @@
     <tbody>
       <tr>
 {% if customers %}
-    {% for customer in customers %}
+    {% for customer in customers %} 
         </tr>
             <td>{{ customer.first_name }} 
                 {{ customer.last_name }}</td>
@@ -35,7 +35,8 @@
             <td>{{ customer.state }}</td> 
             <td>{{ customer.zipcode }}</td>
             <td>{{ customer.created_at }}</td>
-            <td>{{ customer.id }}</td>
+            <td><a href ="{% url 'customer' customer.id %}">{{ customer.id }}</a></td>
+
         </tr>
     {% endfor %}
     
@@ -49,7 +50,7 @@
 
 {% else %}
 
-
+<div class="col-md-6 offset-md-3">
 <h1>Login</h1>
 <br/>
 
