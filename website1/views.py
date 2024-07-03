@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import SignUpForm
+from .forms import SignUpForm, AddCustomerForm
 from .models import Customer
 
 
@@ -65,4 +65,18 @@ def delete_customer(request, pk):
         return redirect('home')
     else:
         messages.error(request, 'You must be logged in to do that!')
+        return redirect('home')
+    
+def add_customer(request):
+    form = AddCustomerForm(request.POST or None)
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            if form.is_valid():
+                add_customer = form.save()
+                messages.success(request, 'Customer added!')
+                return redirect('home')
+    
+        return render(request, 'add_customer.html', {'form':form})
+    else:
+        messages.success(request, 'You must be logged in')
         return redirect('home')
