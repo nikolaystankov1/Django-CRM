@@ -6,7 +6,23 @@
 
 {% if user.is_authenticated %}
 
-<h1>Hello World!</h1>
+<h1>Customers....</h1>
+{% if customers %}
+    {% for customer in customers %}
+        {{ customer.first_name }} <br/>
+        {{ customer.last_name }} <br/>
+        {{ customer.phone }} <br/>
+        {{ customer.address }} <br/>
+        {{ customer.email }} <br/>
+        {{ customer.city }} <br/>
+        {{ customer.state }} <br/>
+        {{ customer.zipcode }} <br/>
+        {{ customer.created_at }} <br/>
+        <br/>
+
+    {% endfor %}
+
+{% endif %}
 
 {% else %}
 
