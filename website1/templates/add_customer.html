@@ -7,13 +7,15 @@
 
 <form method="POST" action="{% url 'add_customer' %}">
     {% csrf_token %}
-    
+
     {{ form.as_p }}
 
     <br/>
     <button type="submit" class="btn btn-secondary">Add customer</button>
+    <br/><br/>
+    <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
 
 </form>
 
-
+</div>
 {% endblock %}
